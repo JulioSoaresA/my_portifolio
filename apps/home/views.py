@@ -11,7 +11,7 @@ def index(request):
     sobre_mim = SobreMim.objects.first()
     imagem_sobre_mim = ImagemSobreMim.objects.first()
     experiencias = Experiencias.objects.all().order_by('-data_inicio')
-    habilidades = Habilidades.objects.all().order_by('-id')
+    habilidades = Habilidades.objects.all().order_by('id').exclude(habilidade__in=["CSS", "Javascript"])
     projetos = Projetos.objects.all().order_by('-id')
     contato = Contato.objects.first()
 

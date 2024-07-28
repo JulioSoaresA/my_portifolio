@@ -54,24 +54,23 @@
         </div>
         <div class="home-img">
             {% if imagem_introducao %}
-            <img src="{{ imagem_introducao.imagem.url }}" alt="">
+            <img src="{{ imagem_introducao.imagem.url }}" alt="{{ imagem_introducao.alt }}">
             {% endif %}
         </div>
     </section>
 
     <section class="about hidden" id="about">
         <div class="about-img">
-            <img src="{% static '/img/minhas_fotos/image04.png' %}" alt="">
+            {% if imagem_sobre_mim %}
+            <img src="{{ imagem_sobre_mim.imagem.url }}" alt="{{ imagem_sobre_mim.alt }}">
+            {% endif %}
         </div>
         <div class="about-content">
             <h2>Sobre <span>Mim</span></h2>
             <p id="about-text">
-                Software Engineer with nearly two years of experience in the technology industry, specializing in back-end development
-                with Python and
-                Django, and expanding into front-end technologies to become a full-stack developer. My strong soft skills include
-                creativity, fast-paced
-                learning, problem-solving, determination, proactivity, and organization, which drive my success in delivering
-                high-quality solutions.
+                {% if sobre_mim %}
+                    {{ sobre_mim.descricao }}
+                {% endif %}
             </p>
             <a href="#" class="btn" id="read-more-btn">Leia Mais</a>
         </div>
@@ -80,245 +79,72 @@
     <section class="experiences hidden" id="experiences">
         <h2 class="heading">Experiências</h2>
         <div class="experiences-box">
+            {% if experiencias %}
+            {% for experiencia in experiencias %}
             <div class="experience-card hidden">
                 <div class="experience-img">
-                    <img src="{% static '/img/projetos/eject.jpeg' %}" alt="">
+                    <img src="{{ experiencia.logo.url }}" alt="">
                 </div>
                 <div class="experience-text">
-                    <h4>2024 - <span>Atual</span></h4>
-                    <h3>Desenvolvedor Backend - <span>EJECT</span></h3>
+                    <h4>{{ experiencia.data_inicio|date:"Y" }} - <span>{% if experiencia.data_fim %}{{ experiencia.data_fim }}{% else %}Atual{% endif %}</span></h4>
+                    <h3>{{ experiencia.cargo }} - <span>{{ experiencia.empresa }}</span></h3>
                     <p>
-                        <span>Stack:</span> Python, Django, MySQL, Scrum
+                        <span>Stack:</span> {{ experiencia.stack }}
                     </p>
                 </div>
             </div>
-            <div class="experience-card hidden">
-                <div class="experience-img">
-                    <img src="{% static '/img/projetos/lais.webp' %}" alt="">
-                </div>
-                <div class="experience-text">
-                    <h4>2022 - <span>Atual</span></h4>
-                    <h3>Engenheiro Backend - <span>LAIS</span></h3>
-                    <p>
-                        <span>Stack:</span> Python, Django, PostgreSQL, 
-                        Redis, CI/CD, Scrum
-                    </p>
-                </div>
-            </div>
+            {% endfor %}
+            {% endif %}
         </div>
     </section>
 
     <section class="my-skills hidden" id="my-skills">
         <h2 class="heading">Minhas habilidades</h2>
         <div class="skills-container">
+            {% if habilidades %}
+            {% for habilidade in habilidades %}
             <div class="skill-box hidden">
                 <div class="skill-info">
-                    <i class='bx bxl-python'></i>
-                    <h4>Python</h4>
+                    {{ habilidade.icone|safe }}
+                    <h4>{{ habilidade.habilidade }}</h4>
                 </div>
             </div>
-            <div class="skill-box hidden">
-                <div class="skill-info">
-                    <i class='bx bxl-django'></i>
-                    <h4>Django</h4>
-                </div>
-            </div>
-            <div class="skill-box hidden">
-                <div class="skill-info">
-                    <i class='bx bxl-postgresql'></i>
-                    <h4>PostgreSQL</h4>
-                </div>        
-            </div>
-            <div class="skill-box hidden">
-                <div class="skill-info">
-                    <i class='bx bxl-mongodb'></i>
-                    <h4>MongoDB</h4>
-                </div>
-            </div>
-            <div class="skill-box hidden">
-                <div class="skill-info">
-                    <i class='bx bxl-html5'></i>
-                    <h4>HTML</h4>
-                </div>
-            </div>
-            <div class="skill-box hidden">
-                <div class="skill-info">
-                    <i class='bx bxl-bootstrap'></i>
-                    <h4>Bootstrap</h4>
-                </div>
-            </div>
-            <div class="skill-box hidden">
-                <div class="skill-info">
-                    <i class='bx bx-loader-circle'></i>
-                    <h4>Agile Frameworks (Scrum)</h4>
-                </div>
-            </div>
-            <div class="skill-box hidden">
-                <div class="skill-info">
-                    <i class='bx bx-analyse'></i>
-                    <h4>CI/CD</h4>
-                </div>
-            </div>
+            {% endfor %}
+            {% endif %}
         </div>
     </section>   
     
     <section class="projects hidden" id="projects">
         <h2 class="heading">Projetos</h2>
         <div class="projects-box">
+            {% if projetos %}
+            {% for projeto in projetos %}
             <div class="project-card">
-                <img src="{% static '/img/projetos/project1.png' %}" alt="">
-                <h3>Project 01</h3>
+                <img src="{{ projeto.imagem.url }}" alt="{{ projeto.alt }}">
+                <h3>{{  projeto.titulo }}</h3>
                 <p>
-                    Lorem ipsum odor amet, consectetuer adipiscing elit. Metus diam ridiculus ut, primis massa euismod parturient suscipit.
-                    Class scelerisque placerat per dolor magna facilisi dui cursus ultrices. Natoque sodales odio condimentum; torquent
-                    tincidunt curae varius penatibus gravida? Praesent nibh orci sollicitudin ultricies laoreet.
+                    {{ projeto.descricao }}
                 </p>
                 <div class="stack-icons">
+                    {% for stack in projeto.stack.all %}
                     <a href="#">
-                        <i class='bx bxl-python'></i>
+                        {{ stack.icone|safe }}
                     </a>
-                    <a href="#">
+                    {% endfor %}
+                    <!-- <a href="#">
                         <i class='bx bxl-django'></i>
                     </a>
                     <a href="#">
                         <i class='bx bxl-postgresql'></i>
-                    </a>
+                    </a> -->
                 </div>
                 <div class="btn-group">
-                    <a href="#" class="btn">Github</a>
-                    <a href="#" class="btn">Site</a>
+                    <a href="{{ projeto.repo }}" class="btn">Github</a>
+                    <a href="{{ projeto.site }}" class="btn">Site</a>
                 </div>
             </div>
-            <div class="project-card">
-                <img src="{% static '/img/projetos/project2.png' %}" alt="">
-                <h3>Project 02</h3>
-                <p>
-                    Lorem ipsum odor amet, consectetuer adipiscing elit. Metus diam ridiculus ut, primis massa euismod parturient
-                    suscipit.
-                    Class scelerisque placerat per dolor magna facilisi dui cursus ultrices. Natoque sodales odio condimentum;
-                    torquent
-                    tincidunt curae varius penatibus gravida? Praesent nibh orci sollicitudin ultricies laoreet.
-                </p>
-                <div class="stack-icons">
-                    <a href="#">
-                        <i class='bx bxl-python'></i>
-                    </a>
-                    <a href="#">
-                        <i class='bx bxl-django'></i>
-                    </a>
-                    <a href="#">
-                        <i class='bx bxl-postgresql'></i>
-                    </a>
-                </div>
-                <div class="btn-group">
-                    <a href="#" class="btn">Github</a>
-                    <a href="#" class="btn">Site</a>
-                </div>
-            </div>
-            <div class="project-card">
-                <img src="{% static '/img/projetos/project3.png' %}" alt="">
-                <h3>Project 03</h3>
-                <p>
-                    Lorem ipsum odor amet, consectetuer adipiscing elit. Metus diam ridiculus ut, primis massa euismod parturient
-                    suscipit.
-                    Class scelerisque placerat per dolor magna facilisi dui cursus ultrices. Natoque sodales odio condimentum;
-                    torquent
-                    tincidunt curae varius penatibus gravida? Praesent nibh orci sollicitudin ultricies laoreet.
-                </p>
-                <div class="stack-icons">
-                    <a href="#">
-                        <i class='bx bxl-python'></i>
-                    </a>
-                    <a href="#">
-                        <i class='bx bxl-django'></i>
-                    </a>
-                    <a href="#">
-                        <i class='bx bxl-postgresql'></i>
-                    </a>
-                </div>
-                <div class="btn-group">
-                    <a href="#" class="btn">Github</a>
-                    <a href="#" class="btn">Site</a>
-                </div>
-            </div>
-            <div class="project-card">
-                <img src="{% static '/img/projetos/project4.png' %}" alt="">
-                <h3>Project 04</h3>
-                <p>
-                    Lorem ipsum odor amet, consectetuer adipiscing elit. Metus diam ridiculus ut, primis massa euismod parturient
-                    suscipit.
-                    Class scelerisque placerat per dolor magna facilisi dui cursus ultrices. Natoque sodales odio condimentum;
-                    torquent
-                    tincidunt curae varius penatibus gravida? Praesent nibh orci sollicitudin ultricies laoreet.
-                </p>
-                <div class="stack-icons">
-                    <a href="#">
-                        <i class='bx bxl-python'></i>
-                    </a>
-                    <a href="#">
-                        <i class='bx bxl-django'></i>
-                    </a>
-                    <a href="#">
-                        <i class='bx bxl-postgresql'></i>
-                    </a>
-                </div>
-                <div class="btn-group">
-                    <a href="#" class="btn">Github</a>
-                    <a href="#" class="btn">Site</a>
-                </div>
-            </div>
-            <div class="project-card">
-                <img src="{% static '/img/projetos/project5.png' %}" alt="">
-                <h3>Project 05</h3>
-                <p>
-                    Lorem ipsum odor amet, consectetuer adipiscing elit. Metus diam ridiculus ut, primis massa euismod parturient
-                    suscipit.
-                    Class scelerisque placerat per dolor magna facilisi dui cursus ultrices. Natoque sodales odio condimentum;
-                    torquent
-                    tincidunt curae varius penatibus gravida? Praesent nibh orci sollicitudin ultricies laoreet.
-                </p>
-                <div class="stack-icons">
-                    <a href="#">
-                        <i class='bx bxl-python'></i>
-                    </a>
-                    <a href="#">
-                        <i class='bx bxl-django'></i>
-                    </a>
-                    <a href="#">
-                        <i class='bx bxl-postgresql'></i>
-                    </a>
-                </div>
-                <div class="btn-group">
-                    <a href="#" class="btn">Github</a>
-                    <a href="#" class="btn">Site</a>
-                </div>
-            </div>
-            <div class="project-card">
-                <img src="{% static '/img/projetos/project6.png' %}" alt="">
-                <h3>Project 06</h3>
-                <p>
-                    Lorem ipsum odor amet, consectetuer adipiscing elit. Metus diam ridiculus ut, primis massa euismod parturient
-                    suscipit.
-                    Class scelerisque placerat per dolor magna facilisi dui cursus ultrices. Natoque sodales odio condimentum;
-                    torquent
-                    tincidunt curae varius penatibus gravida? Praesent nibh orci sollicitudin ultricies laoreet.
-                </p>
-                <div class="stack-icons">
-                    <a href="#">
-                        <i class='bx bxl-python'></i>
-                    </a>
-                    <a href="#">
-                        <i class='bx bxl-django'></i>
-                    </a>
-                    <a href="#">
-                        <i class='bx bxl-postgresql'></i>
-                    </a>
-                </div>
-                <div class="btn-group">
-                    <a href="#" class="btn">Github</a>
-                    <a href="#" class="btn">Site</a>
-                </div>
-            </div>
+            {% endfor %}
+            {% endif %}
         </div>
     </section>
     <selection class="contact hidden" id="contact">
