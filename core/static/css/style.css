@@ -20,6 +20,21 @@ body {
     background: var(--bg-color);
     color: var(--text-color);
 }
+
+.hidden {
+    opacity: 0;
+    filter:blur(15px);
+    transform: translateX(-100%);
+    transition: all 1s;
+}
+
+.show {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0);
+    transition: all 1s;
+}
+
 .header {
     position: fixed;
     width: 100%;
@@ -124,6 +139,42 @@ section {
                 0 0 50px var(--main-color),
                 0 0 100px var(--main-color);
 }
+.text-animation {
+    font-size: 34px;
+    font-weight: 600;
+    min-width: 280px;
+}
+.text-animation span {
+    position: relative;
+}
+.text-animation span::before {
+    content: "Backend Developer";
+    color: var(--main-color);
+}
+.text-animation span::after {
+    content: "";
+    background-color: var(--bg-color);
+    position: absolute;
+    width: calc(100% + 8px);
+    height: 100%;
+    border-left: 3px solid var(--bg-color);
+    right: -8px;
+    animation: cursor 0.6s infinite, typing 6s steps(14) infinite;
+}
+@keyframes cursor {
+    to {
+        border-left: 2px solid var(--main-color);
+    }
+}
+@keyframes typing {
+    0%, 40%, 100% {
+        width: calc(100% + 8px);
+    }
+    50%, 90% {
+        width: 0;
+    }
+}
+
 .social-icons a{
     display: inline-flex;
     justify-content: center;
@@ -481,6 +532,9 @@ section {
     }
     .home-img img {
         width: 56vw;
+    }
+    .experience-card img {
+        display: none;
     }
     .about {
         flex-direction: column-reverse;
