@@ -114,14 +114,14 @@ section {
     text-align: right;
 }
 .home-content h1 {
-    font-size: 8rem;
+    font-size: 4rem;
     font-weight: 700;
     margin-top: 1.5rem;
     line-height: 1;
 }
 .home-content h3 {
     margin: 1rem 0;
-    font-size: 4rem;
+    font-size: 2rem;
 }
 .home-content p {
     font-size: 1.5rem;
@@ -148,7 +148,7 @@ section {
     position: relative;
 }
 .text-animation span::before {
-    content: "Backend Developer";
+    content: "Desenvolvedor Backend";
     color: var(--main-color);
 }
 .text-animation span::after {
@@ -531,13 +531,13 @@ section {
         text-align: center;
     }
     .home-content h1 {
-        font-size: 6rem;
+        font-size: 4rem;
     }
     .home-content h3 {
-        font-size: 3rem;
+        font-size: 2rem;
     }
     .home-img img {
-        width: 56vw;
+        width: 32vw;
     }
     .experience-card img {
         display: none;
@@ -551,7 +551,7 @@ section {
         margin: 2rem 0;
     }
     .about img {
-        width: 52vw;
+        width: 30vw;
     }
     .contact form {
         flex-direction: column;

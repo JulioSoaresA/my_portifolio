@@ -26,31 +26,36 @@
 
     <section class="home hidden" id="home">
         <div class="home-content">
-            <h1>Hi, It's <span>Júlio</span></h1>
+            <h1>Olá, meu nome é <span>Júlio</span></h1>
             <h3 class="text-animation">
-                I'm a <span></span>
+                Eu sou um <span></span>
             </h3>
-            <p>
+            <!-- <p>
                 Lorem ipsum odor amet, consectetuer adipiscing elit. Metus diam ridiculus ut, primis massa euismod parturient suscipit.
                 Class scelerisque placerat per dolor magna facilisi dui cursus ultrices. Natoque sodales odio condimentum; torquent
                 tincidunt curae varius penatibus gravida? Praesent nibh orci sollicitudin ultricies laoreet. Natoque turpis erat morbi
                 senectus dictum, egestas nunc lectus. Tempus malesuada vivamus ad; purus placerat vehicula sed efficitur.
-            </p>
+            </p> -->
             <div class="social-icons">
-                <a href="#">
-                    <i class='bx bxl-github'></i>
-                </a>
-                <a href="#">
-                    <i class='bx bxl-linkedin-square'></i>
-                </a>
+                {% if redes_sociais %}
+                    {% for rede_social in redes_sociais %}
+                    <a href="{{ rede_social.url }}">
+                        {{ rede_social.icone|safe }}
+                    </a>
+                    {% endfor %}
+                {% endif %}
             </div>
             <div class="btn-group">
-                <a href="#" class="btn">Download CV</a>
+                {% if cv %}
+                <a href="{% url 'download_cv' cv.id %}" class="btn" target="_blank">Download CV</a>
+                {% endif %}
                 <a href="#" class="btn">Entre em contato</a>
             </div>
         </div>
         <div class="home-img">
-            <img src="{% static '/img/minhas_fotos/image03.png' %}" alt="">
+            {% if imagem_introducao %}
+            <img src="{{ imagem_introducao.imagem.url }}" alt="">
+            {% endif %}
         </div>
     </section>
 

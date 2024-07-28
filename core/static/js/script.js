@@ -46,3 +46,17 @@ document.addEventListener("DOMContentLoaded", function () {
         isTruncated = !isTruncated;
     });
 });
+
+document.getElementById("download-btn").addEventListener("click", function () {
+    var cvId = this.getAttribute("data-cv-id");
+    fetch(`/download-cv/${cvId}/`)
+        .then((response) => response.json())
+        .then((data) => {
+            if (data.success) {
+                window.location.href = data.download_url;
+            } else {
+                alert("Erro ao baixar o CV.");
+            }
+        })
+        .catch((error) => console.error("Erro:", error));
+});
