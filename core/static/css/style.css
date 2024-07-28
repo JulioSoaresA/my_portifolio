@@ -530,6 +530,12 @@ section {
         align-items: center;
         text-align: center;
     }
+    .home-content h1 {
+        font-size: 6rem;
+    }
+    .home-content h3 {
+        font-size: 3rem;
+    }
     .home-img img {
         width: 56vw;
     }
