@@ -1,13 +1,77 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Portfolio Website</title>
+    <link rel="stylesheet" href="{% static '/css/style.css' %}"/>
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-    <h1>
-        Hello World
-    </h1>
+    <header class="header">
+        <a href="home" class="logo">
+            Júlio <span>Soares</span>
+        </a>
+        <i class="bx bx-menu" id="menu-icon"></i>
+        <nav class="navbar">
+            <a href="#home">Home</a>
+            <a href="#about">Sobre</a>
+            <a href="#services">Serviços</a>
+            <a href="#projects">Projetos</a>
+            <a href="#contact">Contato</a>
+        </nav>
+        <!-- <button class="gradient-btn">Entre em contato</button> -->
+    </header>
+
+    <section class="home" id="home">
+        <div class="home-content">
+            <h1>Hi, It's <span>Júlio</span></h1>
+            <h3>
+                I'm a <span>Web Developer</span>
+            </h3>
+            <p>
+                Lorem ipsum odor amet, consectetuer adipiscing elit. Metus diam ridiculus ut, primis massa euismod parturient suscipit.
+                Class scelerisque placerat per dolor magna facilisi dui cursus ultrices. Natoque sodales odio condimentum; torquent
+                tincidunt curae varius penatibus gravida? Praesent nibh orci sollicitudin ultricies laoreet. Natoque turpis erat morbi
+                senectus dictum, egestas nunc lectus. Tempus malesuada vivamus ad; purus placerat vehicula sed efficitur.
+            </p>
+            <div class="social-icons">
+                <a href="#">
+                    <i class='bx bxl-github'></i>
+                </a>
+                <a href="#">
+                    <i class='bx bxl-linkedin-square'></i>
+                </a>
+            </div>
+            <div class="btn-group">
+                <a href="#" class="btn">Download CV</a>
+                <a href="#" class="btn">Entre em contato</a>
+            </div>
+        </div>
+        <div class="home-img">
+            <img src="{% static '/img/minhas_fotos/image03.png' %}" alt="">
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-img">
+            <img src="{% static '/img/minhas_fotos/image04.png' %}" alt="">
+        </div>
+        <div class="about-content">
+            <h2>Sobre <span>Mim</span></h2>
+            <p>
+                Lorem ipsum odor amet, consectetuer adipiscing elit. Metus diam ridiculus ut, primis massa euismod parturient suscipit.
+                Class scelerisque placerat per dolor magna facilisi dui cursus ultrices. Natoque sodales odio condimentum; torquent
+                tincidunt curae varius penatibus gravida? Praesent nibh orci sollicitudin ultricies laoreet. Natoque turpis erat morbi
+                senectus dictum, egestas nunc lectus. Tempus malesuada vivamus ad; purus placerat vehicula sed efficitur.
+            </p>
+            <a href="#" class="btn">Leia Mais</a>
+        </div>
+    </section>
+
+    
+
+    <script src="{% static '/js/script.js' %}"></script>
 </body>
 </html>
