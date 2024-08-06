@@ -79,6 +79,7 @@ span {
 .navbar a:hover {
     color: var(--main-color);
     border-bottom: 3px solid var(--main-color);
+    text-decoration: none;
 }
 .gradient-btn {
     font-size: 1.8rem;
@@ -187,12 +188,14 @@ section {
     color: var(--main-color);
     margin: 3rem 0.5rem;
     transition: 0.3s ease-in-out;
+    text-decoration: none;
 }
 .social-icons a:hover {
     color: var(--text-color);
     background-color: var(--main-color);
     transform: scale(1.2)translateY(-5px);
     box-shadow: 0 0 25px var(--main-color);
+    text-decoration: none;
 }
 .btn-group {
     display: flex;
@@ -445,10 +448,18 @@ section {
 .stack-icons a:hover {
     color: var(--main-color);
     transform: scale(1.2)translateY(-5px);
+    text-decoration: none;
 }
 
 .contact {
     background-color: var(--bg-color);
+}
+
+.alert {
+    background-color: var(--main-color);
+    color: white;
+    text-align: center;
+    font-size: 1.8rem;
 }
 
 .contact h2 {
@@ -463,7 +474,7 @@ section {
     margin: 5rem 0;
     text-align: center;
 }
-.contact form .input-box input,
+.contact form .custom-input-box input,
 .contact form textarea {
     width: 100%;
     padding: 2.5rem;

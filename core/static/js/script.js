@@ -47,16 +47,20 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-document.getElementById("download-btn").addEventListener("click", function () {
-    var cvId = this.getAttribute("data-cv-id");
-    fetch(`/download-cv/${cvId}/`)
-        .then((response) => response.json())
-        .then((data) => {
-            if (data.success) {
-                window.location.href = data.download_url;
-            } else {
-                alert("Erro ao baixar o CV.");
+document.addEventListener("DOMContentLoaded", function () {
+    let minhaMask = document.querySelector(".telefone-mask");
+    if (minhaMask) {
+        // Aplica a máscara
+        $(minhaMask).mask("(00) 00000-0000");
+
+        // Limita o número de caracteres
+        minhaMask.addEventListener("input", function () {
+            const maxLength = 15; // Incluindo parênteses, espaço e hífen
+            if (this.value.length > maxLength) {
+                this.value = this.value.slice(0, maxLength);
             }
-        })
-        .catch((error) => console.error("Erro:", error));
+        });
+    } else {
+        console.error("Elemento com a classe 'telefone-mask' não foi encontrado.");
+    }
 });
